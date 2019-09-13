@@ -3,23 +3,31 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <pru_cfg.h>
-#include <pru_intc.h>
-#include <sys_tscAdcSs.h>
+#include <am335x/pru_cfg.h>
+#include <am335x/pru_intc.h>
+#include <am335x/sys_tscAdcSs.h>
 #include <rsc_types.h>
 #include <pru_rpmsg.h>
-#include "resource_table_0.h"
-#include <sys/time.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+#include "am335x/resource_table_0.h"
+//#include <sys/time.h>
+//#include <sys/stat.h>
+//#include <fcntl.h>
 #include <stdbool.h>
-#include <poll.h>
+//#include <poll.h>
 #include <inttypes.h>
-#include <unistd.h>
+//#include <unistd.h>
 #include <errno.h>
 
+/*
+ * Define ADC clocks
+ */
+#define CM_WKUP_CLKSTCTRL  (*((volatile unsigned int *)0x44E00400))
+#define CM_WKUP_ADC_TSC_CLKCTRL  (*((volatile unsigned int *)0x44E004BC))
+/*
+ *
+ */
 char charVoltageVal[] = "0.0000";
-static char * convertVoltage(const uint16_t rawVoltage);
+//static char * convertVoltage(const uint16_t rawVoltage);
 static uint16_t readADCchannel(const char *adcChannel);
 void init_adc();
 
@@ -28,21 +36,22 @@ void init_adc();
  */
 int main(void)
 {
+    init
 	return 0;
 }
 
 
-static uint16_t readADCchannel(const char *adcChannel){
-    char outputFilename[] = "outputVoltages.txt";
-    uint16_t returnedVoltage;
-    char *endptr;
-    uintmax_t val = strtoumax(&adcChannel[0],&endptr,10);
-    if (errno == ERANGE || val > UINT16_MAX || endptr == &adcChannel[0] || *endptr !='\0'){
-        printf("stroutmax had an error");
-        exit(EXIT_FAILURE);
-    }
-    size_t freadResult = read(pfds[0].fd)
-}
+//static uint16_t readADCchannel(const char *adcChannel){
+//    char outputFilename[] = "outputVoltages.txt";
+//    uint16_t returnedVoltage;
+//    char *endptr;
+//    uintmax_t val = strtoumax(&adcChannel[0],&endptr,10);
+//    if (errno == ERANGE || val > UINT16_MAX || endptr == &adcChannel[0] || *endptr !='\0'){
+//        printf("stroutmax had an error");
+//        exit(EXIT_FAILURE);
+//    }
+//    size_t freadResult = read(pfds[0].fd)
+//}
 
 void init_adc()
 {
@@ -83,7 +92,7 @@ void init_adc()
     /*
      * Enable DMA requests on FIFO0
      */
-    ADC_TSC.DMAENABLE_SET.Enable_0 = 1;
+//    ADC_TSC.DMAENABLE_SET.Enable_0 = 1;
 
 
     /*
