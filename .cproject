@@ -48,6 +48,7 @@
 									<listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/include"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.PRU_2.3.compilerID.ENDIAN.1689204938" name="Specify the endianness of both code and data [See 'General' page to edit] (--endian)" superClass="com.ti.ccstudio.buildDefinitions.PRU_2.3.compilerID.ENDIAN" useByScannerDiscovery="false" value="com.ti.ccstudio.buildDefinitions.PRU_2.3.compilerID.ENDIAN.little" valueType="enumerated"/>
+								<option id="com.ti.ccstudio.buildDefinitions.PRU_2.3.compilerID.OPT_LEVEL.2121193084" superClass="com.ti.ccstudio.buildDefinitions.PRU_2.3.compilerID.OPT_LEVEL" value="com.ti.ccstudio.buildDefinitions.PRU_2.3.compilerID.OPT_LEVEL.4" valueType="enumerated"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.PRU_2.3.compiler.inputType__C_SRCS.1426524081" name="C Sources" superClass="com.ti.ccstudio.buildDefinitions.PRU_2.3.compiler.inputType__C_SRCS"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.PRU_2.3.compiler.inputType__CPP_SRCS.1827985523" name="C++ Sources" superClass="com.ti.ccstudio.buildDefinitions.PRU_2.3.compiler.inputType__CPP_SRCS"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.PRU_2.3.compiler.inputType__ASM_SRCS.1647431309" name="Assembly Sources" superClass="com.ti.ccstudio.buildDefinitions.PRU_2.3.compiler.inputType__ASM_SRCS"/>

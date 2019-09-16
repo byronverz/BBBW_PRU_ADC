@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdio.h>
+//#include <math.h>
 #include <am335x/pru_cfg.h>
 #include <am335x/pru_intc.h>
 #include <am335x/sys_tscAdcSs.h>
@@ -14,9 +15,9 @@
 //#include <fcntl.h>
 #include <stdbool.h>
 //#include <poll.h>
-#include <inttypes.h>
+//#include <inttypes.h>
 //#include <unistd.h>
-#include <errno.h>
+//#include <errno.h>
 
 /*
  * Define ADC clocks
@@ -26,17 +27,22 @@
 /*
  *
  */
-char charVoltageVal[] = "0.0000";
+//char charVoltageVal[] = "0.0000";
 //static char * convertVoltage(const uint16_t rawVoltage);
-static uint16_t readADCchannel(const char *adcChannel);
+//static uint16_t readADCchannel(const char *adcChannel);
 void init_adc();
+uint16_t read_adc(uint16_t adc_chan);
+uint16_t output=0;
 
 /**
  * main.c
  */
 int main(void)
 {
-    init
+    init_adc();
+    output  = read_adc(5);
+//    char outStr[4];
+//    printf("%d", output);
 	return 0;
 }
 
@@ -70,7 +76,7 @@ void init_adc()
      */
     ADC_TSC.CTRL_bit.ENABLE = 0;
     ADC_TSC.CTRL_bit.STEPCONFIG_WRITEPROTECT_N_ACTIVE_LOW = 1;
-
+    ADC_TSC.ADC_CLKDIV = 4;
     /*
      * set the ADC_TSC STEPCONFIG1 register for channel 5
      * Mode = 0; SW enabled, one-shot
@@ -79,7 +85,7 @@ void init_adc()
          * SEL_INM_SWC_3_0 = 1xxx = VREFN (reduces noise in single ended mode)
      * use FIFO0
      */
-    ADC_TSC.STEPCONFIG1_bit.MODE = 1;
+    ADC_TSC.STEPCONFIG1_bit.MODE = 0;
     ADC_TSC.STEPCONFIG1_bit.AVERAGING = 2;
     ADC_TSC.STEPCONFIG1_bit.SEL_INP_SWC_3_0 = 4;
     ADC_TSC.STEPCONFIG1_bit.SEL_INM_SWC_3_0 = 8;
@@ -177,6 +183,7 @@ uint16_t read_adc(uint16_t adc_chan)
              * this error condition should not occur because of
              * checks in userspace code
              */
+//            printf("No ADC channel selected");
             ADC_TSC.STEPENABLE_bit.STEP1 = 1;
     }
 
